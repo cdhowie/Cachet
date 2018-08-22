@@ -23,14 +23,20 @@ final class ComponentWasUpdatedEvent implements ComponentEventInterface
     public $component;
 
     /**
+     * The status of the component before the update.
+     */
+    public $prior_status;
+
+    /**
      * Create a new component was updated event instance.
      *
      * @param \CachetHQ\Cachet\Models\Component $component
      *
      * @return void
      */
-    public function __construct(Component $component)
+    public function __construct(Component $component, $prior_status)
     {
         $this->component = $component;
+        $this->prior_status = $prior_status;
     }
 }

@@ -28,9 +28,11 @@ class UpdateComponentCommandHandler
     {
         $component = $command->component;
 
+        $prior_status = $component->status;
+
         $component->update($this->filter($command));
 
-        event(new ComponentWasUpdatedEvent($component));
+        event(new ComponentWasUpdatedEvent($component, $prior_status));
 
         return $component;
     }
